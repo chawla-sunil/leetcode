@@ -11,11 +11,16 @@ class PhonePe2 {
         a.add((Arrays.asList(3,4)));
         a.add((Arrays.asList(6,5,7)));
         a.add((Arrays.asList(4,1,8,3)));
+        // for question 1
          int ans = min(a);
          System.out.println(ans);
 
+        System.out.println("======= Solution 2 =======");
          // for question 2
         binary(10);
+
+        System.out.println("======= Solution 2 with O(1) Space =======");
+        binarySolution2(10);
     }
 
     // For each step, you may move to an adjacent number of the row below. More formally,
@@ -60,4 +65,32 @@ class PhonePe2 {
             n--;
         }
     }
+
+    public static void binarySolution2(int n) {
+        String binary = "1";
+        System.out.println(binary);
+
+        for (int i = 2; i <= n; i++) {
+            String carry = "1";
+            StringBuilder binaryBuilder = new StringBuilder(binary);
+
+            int j = binary.length() - 1;
+            while (j >= 0 && carry.equals("1")) {
+                char currentBit = binary.charAt(j);
+                if (currentBit == '1') {
+                    binaryBuilder.setCharAt(j, '0');
+                } else {
+                    binaryBuilder.setCharAt(j, '1');
+                    carry = "0";
+                }
+                j--;
+            }
+            if (carry.equals("1")) {
+                binaryBuilder.insert(0, '1');
+            }
+            binary = binaryBuilder.toString();
+            System.out.println(binary);
+        }
+    }
+
 }
