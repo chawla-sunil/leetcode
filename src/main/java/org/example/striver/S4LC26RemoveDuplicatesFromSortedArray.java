@@ -1,6 +1,6 @@
 package org.example.striver;
 
-public class S3LC26RemoveDuplicatesFromSortedArray {
+public class S4LC26RemoveDuplicatesFromSortedArray {
 //    Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such
 //    that each unique element appears only once. The relative order of the elements should be kept the same.
 //    Then return the number of unique elements in nums.
