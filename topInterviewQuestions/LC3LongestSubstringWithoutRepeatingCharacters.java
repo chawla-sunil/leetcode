@@ -1,3 +1,5 @@
+import java.util.HashSet;
+import java.util.Set;
 
 public class LC3LongestSubstringWithoutRepeatingCharacters {
 //    Given a string s, find the length of the longest
@@ -40,7 +42,7 @@ public class LC3LongestSubstringWithoutRepeatingCharacters {
                 charSet.add(s.charAt(right));
                 maxLength = Math.max(maxLength, right - left + 1);
             } else {
-                while(charSet.contains(s.charAt(right))) {
+                while (charSet.contains(s.charAt(right))) {
                     charSet.remove(s.charAt(left));
                     left++;
                 }
