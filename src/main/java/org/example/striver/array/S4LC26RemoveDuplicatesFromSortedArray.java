@@ -1,4 +1,4 @@
-package org.example.striver;
+package org.example.striver.array;
 
 public class S4LC26RemoveDuplicatesFromSortedArray {
 //    Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such

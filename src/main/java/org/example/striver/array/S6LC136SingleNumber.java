@@ -1,4 +1,4 @@
-package org.example.striver;
+package org.example.striver.array;
 
 public class S6LC136SingleNumber {
 //    Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.

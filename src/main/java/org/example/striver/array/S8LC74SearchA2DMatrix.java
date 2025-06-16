@@ -1,4 +1,4 @@
-package org.example.striver;
+package org.example.striver.array;
 
 public class S8LC74SearchA2DMatrix {
 //    You are given an m x n integer matrix matrix with the following two properties:

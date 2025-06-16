@@ -1,4 +1,4 @@
-package org.example.striver;
+package org.example.striver.array;
 
 public class S12LC2149RearrangeArrayElementsBySign {
 //    You are given a 0-indexed integer array nums of even length consisting of an equal number of positive and negative integers.

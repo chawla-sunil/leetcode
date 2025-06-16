@@ -1,4 +1,4 @@
-package org.example.striver;
+package org.example.striver.array;
 
 public class S5LC268MissingNumber {
 

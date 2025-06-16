@@ -1,4 +1,4 @@
-package org.example.striver;
+package org.example.striver.array;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package org.example.striver;
+package org.example.striver.array;
 
 public class S1LC485MaxConsecutiveOnes {
 //    Given a binary array nums, return the maximum number of consecutive 1's in the array.

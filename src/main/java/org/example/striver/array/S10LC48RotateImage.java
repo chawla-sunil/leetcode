@@ -1,4 +1,4 @@
-package org.example.striver;
+package org.example.striver.array;
 
 public class S10LC48RotateImage {
 //    You are given an n x n 2D matrix representing an image, rotate the image by 90 degrees (clockwise).

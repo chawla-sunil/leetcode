@@ -1,4 +1,4 @@
-package org.example.striver;
+package org.example.striver.array;
 
 public class S15LC75SortColors {
 //    Given an array nums with n objects colored red, white, or blue, sort them in-place

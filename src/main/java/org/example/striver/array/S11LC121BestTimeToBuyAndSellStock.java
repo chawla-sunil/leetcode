@@ -1,4 +1,4 @@
-package org.example.striver;
+package org.example.striver.array;
 
 public class S11LC121BestTimeToBuyAndSellStock {
 //    You are given an array prices where prices[i] is the price of a given stock on the ith day.
