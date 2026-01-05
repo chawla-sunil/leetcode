@@ -35,4 +35,19 @@ public class LC55JumpGame {
         }
         return true;
     }
+
+    // This is also same good solution as above
+    public boolean canJump2(int[] nums) {
+        int goal = nums.length - 1;
+
+        for (int i = nums.length - 2; i >= 0; i--) {
+            if (i + nums[i] >= goal) {
+                goal = i; // we will make our new goal to the index from where we can reach the end goal
+            }
+            // else condition means, we are not able to reach to final index from this index, so we don't wanna ended up here
+        }
+
+        // if we have reached till start that means we can reach the end
+        return goal == 0;
+    }
 }

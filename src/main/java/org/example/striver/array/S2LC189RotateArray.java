@@ -26,6 +26,11 @@ public class S2LC189RotateArray {
         reverse(nums, 0, nums.length - k - 1);
         reverse(nums, nums.length - k, nums.length - 1);
         reverse(nums, 0, nums.length -1);
+
+        // OR we can do this order, same thing.
+        // reverse(nums, 0, nums.length - 1);
+        // reverse(nums, 0, k - 1);
+        // reverse(nums, k, nums.length  - 1);
     }
 
     public void reverse(int[] nums, int left, int right) {
@@ -35,6 +40,23 @@ public class S2LC189RotateArray {
             nums[right] = temp;
             left++;
             right--;
+        }
+    }
+
+    // This is simple and brute force using extra space O(n)
+    public void rotate2(int[] nums, int k) {
+        k = k % nums.length;
+        int n = nums.length;
+        int[] arr = new int[n];
+
+        int j = 0;
+        //i = 0 + n-k;   i < n + n-k; > understand the below loop conditions by this..
+        for (int i = n-k; i < 2*n-k; i++) {
+            arr[j++] = nums[i % n];
+        }
+
+        for (int i = 0; i < n; i++) {
+            nums[i] = arr[i];
         }
     }
 }

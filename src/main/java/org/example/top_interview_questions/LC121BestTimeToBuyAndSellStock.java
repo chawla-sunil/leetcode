@@ -25,8 +25,23 @@ public class LC121BestTimeToBuyAndSellStock {
 //            0 <= prices[i] <= 10^4
 
 
+    // this is the best solution
+    // this and maxProfit3 are same solution
+    public int maxProfit(int[] prices) {
+        int minBuy = prices[0];
+        int profit = 0;
+        for (int i = 1; i < prices.length; i++) {
+            if (prices[i] < minBuy) {
+                minBuy = prices[i];
+            } else {
+                profit = Math.max(profit, prices[i] - minBuy);
+            }
+        }
+        return profit;
+    }
+
     // Simple Solution but giving TLE, O(n^2) time
-    public int maxProfit1(int[] prices) {
+    public int maxProfit2(int[] prices) {
         int max = 0;
         for (int i = 0; i < prices.length; i++) {
             for (int j = i; j < prices.length; j++) {
@@ -37,7 +52,7 @@ public class LC121BestTimeToBuyAndSellStock {
     }
 
     // In O(n) time
-    public int maxProfit(int[] prices) {
+    public int maxProfit3(int[] prices) {
         int buy = Integer.MAX_VALUE; // int buy = prices[0]; it is same thing
         int sell = 0; // sell = profit
 
