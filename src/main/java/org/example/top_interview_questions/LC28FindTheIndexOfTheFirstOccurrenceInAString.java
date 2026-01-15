@@ -21,6 +21,7 @@ public class LC28FindTheIndexOfTheFirstOccurrenceInAString {
 //            1 <= haystack.length, needle.length <= 104
 //            haystack and needle consist of only lowercase English characters.
 
+    // both solutions are almost same but this one is a little better
     public int strStr(String haystack, String needle) {
         // return haystack.indexOf(needle);  // haha
         int hayLen = haystack.length();
@@ -37,6 +38,31 @@ public class LC28FindTheIndexOfTheFirstOccurrenceInAString {
                 return i;
             }
         }
+        return -1;
+    }
+
+    // Simple Soulution, Time: O(n*h)
+    // Loop over haystack and find needle
+    // Takes 1 ms and beats 37.50, better solution is another one
+    public int strStr2(String haystack, String needle) {
+        int h = haystack.length();
+        int n = needle.length();
+        if (n > h) {
+            return -1;
+        }
+
+        for (int i = 0; i <= h-n; i++) { // for haystack
+            int k = i;
+            for (int j = 0; j < n; j++) {
+                if (haystack.charAt(k++) != needle.charAt(j)) { // for needle
+                    break;
+                }
+                if (j == n-1) { // that means the loop did not break and
+                    return i;
+                }
+            }
+        }
+
         return -1;
     }
 }
