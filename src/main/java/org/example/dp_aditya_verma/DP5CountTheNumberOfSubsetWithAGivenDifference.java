@@ -54,6 +54,13 @@ public class DP5CountTheNumberOfSubsetWithAGivenDifference {
     }
 
     private int countSubsetsRecursiveHelper(int[] arr, int n, int target) {
+        // Handle edge base row (only first element available)
+        if (n == 1) {
+            if (target == 0 && arr[0] == 0) return 2; // pick or not pick zero
+            if (target == 0 || target == arr[0]) return 1;
+            return 0;
+        }
+
         // Base Cases
         if (target == 0) return 1; // Found a valid subset
         if (n == 0) return 0; // No elements left
@@ -83,6 +90,13 @@ public class DP5CountTheNumberOfSubsetWithAGivenDifference {
 
     // (2) Memoization approach
     private int countSubsetsMemoization(int[] arr, int n, int target, Integer[][] dp) {
+        // Handle edge base row (only first element available)
+        if (n == 1) {
+            if (target == 0 && arr[0] == 0) return 2; // pick or not pick zero
+            if (target == 0 || target == arr[0]) return 1;
+            return 0;
+        }
+
         // Base Cases
         if (target == 0) return 1; // Found a valid subset
         if (n == 0) return 0; // No elements left
@@ -144,19 +158,21 @@ public class DP5CountTheNumberOfSubsetWithAGivenDifference {
         int target = (diff + sum) / 2;
         int[][] dp = new int[n + 1][target + 1];
 
+        // This initialization is important for edge case like num = [0], target = 0, output = 2
+        // so that we can increase the value when we reach j = 0 again for i = 1;
         // Base Cases
         for (int i = 0; i <= n; i++) {
             dp[i][0] = 1; // There's always one way to make sum 0 (by choosing no elements)
         }
 
         for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= target; j++) {
-                // If last element is greater than target, ignore it
-                if (arr[i - 1] > j) {
-                    dp[i][j] = dp[i - 1][j];
+            for (int j = 0; j <= target; j++) {
+                if (arr[i - 1] <= j) {
+                    // Check if we can obtain the target by including or excluding the last element
+                    dp[i][j] = dp[i - 1][j - arr[i - 1]] + dp[i - 1][j];
                 } else {
-                    // Otherwise, check if we can obtain the target by including or excluding the last element
-                    dp[i][j] = dp[i - 1][j] + dp[i - 1][j - arr[i - 1]];
+                    // If last element is greater than target, ignore it
+                    dp[i][j] = dp[i - 1][j];
                 }
             }
         }
@@ -190,25 +206,13 @@ public class DP5CountTheNumberOfSubsetWithAGivenDifference {
 
 //    public static void main(String[] args) {
 //        DP5CountTheNumberOfSubsetWithAGivenDifference solver = new DP5CountTheNumberOfSubsetWithAGivenDifference();
-//        int[] arr = {5, 2, 6, 4};
-//        int diff = 3;
-//        int n = arr.length;
+//        int[] arr = {5, 2, 6, 4};  // int[] arr = {0};
+//        int diff = 3;              // int diff = 0;
+//        int n = arr.length;        // output should be 2 for arr={0} and diff=0
 //
 //        System.out.println("Recursive: " + solver.countSubsetsRecursive(arr, n, diff));
 //        System.out.println("Memoization: " + solver.countSubsetsMemoizationBase(arr, n, diff));
 //        System.out.println("Tabulation: " + solver.countSubsetsTabulation(arr, n, diff));
 //        System.out.println("Space Optimization: " + solver.countSubsetsSpaceOptimization(arr, n, diff));
 //    }
-
-    public static void main(String[] args) {
-        DP5CountTheNumberOfSubsetWithAGivenDifference solver = new DP5CountTheNumberOfSubsetWithAGivenDifference();
-        int[] arr = {0};
-        int diff = 0;
-        int n = arr.length;
-
-        System.out.println("Recursive: " + solver.countSubsetsRecursive(arr, n, diff));
-        System.out.println("Memoization: " + solver.countSubsetsMemoizationBase(arr, n, diff));
-        System.out.println("Tabulation: " + solver.countSubsetsTabulation(arr, n, diff));
-        System.out.println("Space Optimization: " + solver.countSubsetsSpaceOptimization(arr, n, diff));
-    }
 }

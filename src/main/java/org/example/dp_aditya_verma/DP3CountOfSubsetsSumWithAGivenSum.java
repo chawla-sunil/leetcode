@@ -98,27 +98,10 @@ public class DP3CountOfSubsetsSumWithAGivenSum {
     // false ko 0 aur true ko 1 maan ke chalna hai in Subset Sum Problem
     // (3) Tabulation approach
     public int countSubsetsTabulation(int[] arr, int n, int target) {
-        int[][] dp = new int[n][target + 1];
-
-        // Initialize first row based on arr[0]
-        dp[0][0] = (arr[0] == 0) ? 2 : 1; // pick or not pick zero for target 0
-        if (arr[0] != 0 && arr[0] <= target) dp[0][arr[0]] = 1;
-
-        for (int i = 1; i < n; i++) {
-            for (int j = 0; j <= target; j++) {
-                int notTake = dp[i - 1][j];
-                int take = 0;
-                if (arr[i] <= j) take = dp[i - 1][j - arr[i]];
-                dp[i][j] = notTake + take;
-            }
-        }
-
-        return dp[n - 1][target];
-    }
-
-    public int countSubsetsTabulation2(int[] arr, int n, int target) {
         int[][] dp = new int[n + 1][target + 1];
 
+        // This initialization is important for edge case like num = [0], target = 0, output = 2
+        // so that we can increase the value when we reach j = 0 again for i = 1;
         // Base Cases
         for (int i = 0; i <= n; i++) {
             dp[i][0] = 1; // There's always one way to make sum 0 (by choosing no elements)
@@ -159,25 +142,13 @@ public class DP3CountOfSubsetsSumWithAGivenSum {
 
 //    public static void main(String[] args) {
 //        DP3CountOfSubsetsSumWithAGivenSum solver = new DP3CountOfSubsetsSumWithAGivenSum();
-//        int[] arr = {1, 2, 3, 3};
-//        int target = 6;
-//        int n = arr.length;
+//        int[] arr = {1, 2, 3, 3};   // int[] arr = {0};
+//        int target = 6;             // int target = 0;
+//        int n = arr.length;         // output should be 2 for arr={0} and diff=0
 //
 //        System.out.println("Recursive: " + solver.countSubsetsRecursive(arr, n, target));
 //        System.out.println("Memoization: " + solver.countSubsetsMemoizationBase(arr, n, target));
 //        System.out.println("Tabulation: " + solver.countSubsetsTabulation(arr, n, target));
 //        System.out.println("Space Optimization: " + solver.countSubsetsSpaceOptimization(arr, n, target));
 //    }
-
-    public static void main(String[] args) {
-        DP3CountOfSubsetsSumWithAGivenSum solver = new DP3CountOfSubsetsSumWithAGivenSum();
-        int[] arr = {0};
-        int target = 0;
-        int n = arr.length;
-
-        System.out.println("Recursive: " + solver.countSubsetsRecursive(arr, n, target));
-        System.out.println("Memoization: " + solver.countSubsetsMemoizationBase(arr, n, target));
-        System.out.println("Tabulation: " + solver.countSubsetsTabulation(arr, n, target));
-        System.out.println("Space Optimization: " + solver.countSubsetsSpaceOptimization(arr, n, target));
-    }
 }

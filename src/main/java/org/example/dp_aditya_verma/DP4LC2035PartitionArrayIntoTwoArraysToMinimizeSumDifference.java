@@ -102,9 +102,46 @@ public class DP4LC2035PartitionArrayIntoTwoArraysToMinimizeSumDifference {
         // dp[i][j] will be true if a subset with sum j can be formed using the first i elements
         boolean[][] dp = new boolean[n + 1][totalSum + 1];
 
+        // This initialization is important for edge case like num = [0], target = 0, output = true
+        // so that we can keep the value when we reach j = 0 again for i = 1;
+        for (int i = 0; i <= n; i++) {
+            dp[i][0] = true;
+        }
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j <= totalSum; j++) {
+                if (nums[i-1] <= j) {
+                    dp[i][j] = dp[i-1][j - nums[i-1]] || dp[i-1][j];
+                } else {
+                    dp[i][j] = dp[i-1][j];
+                }
+            }
+        }
+
+        // Find the largest j such that dp[n][j] is true
+        for (int j = totalSum/2; j >= 0; j--) {
+            if (dp[n][j]) {
+                return totalSum - 2 * j;
+            }
+        }
+
+        return -1; // This line should/will never be reached
+    }
+
+    // Not to be used in interview
+    public int minimumDifference2(int[] nums) {
+        int n = nums.length / 2;
+        int totalSum = Arrays.stream(nums).sum(); // for (int num : nums) {totalSum += num;}
+
+        // dp[i][j] will be true if a subset with sum j can be formed using the first i elements
+        boolean[][] dp = new boolean[n + 1][totalSum + 1];
+
         for (int i = 0; i<=n; i++) {
             for (int j = 0; j <= totalSum; j++) {
                 if (j == 0) {
+                    // This is issue for edge case like num = [0], target = 0, output = 2
+                    // We are setting it 1 everytime j = 0, but what j at i = 1 , j = 1 =>[0]
+                    // Then the solution should be 2, it should add i=0 and j=0 solution in this
                     dp[i][j] = true;
                 } else if (i ==0 ) {
                     dp[i][j] = false;

@@ -95,6 +95,8 @@ public class DP2SubsetSumProblem {
             dp[i][0] = true;
         }
 
+        // redundant code, not actually needed
+        // It is just for understanding
         // Initialize the first row, except dp[0][0], as false (no elements to form sum > 0)
         for (int j = 1; j <= sum; j++) {
             dp[0][j] = false;
@@ -102,11 +104,11 @@ public class DP2SubsetSumProblem {
 
         // Fill the dp table
         for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= sum; j++) {
-                if (arr[i - 1] > j) {
-                    dp[i][j] = dp[i - 1][j]; // Exclude the element
+            for (int j = 0; j <= sum; j++) {
+                if (arr[i - 1] <= j) {
+                    dp[i][j] = dp[i - 1][j - arr[i - 1]] || dp[i - 1][j]; // Include or exclude the element
                 } else {
-                    dp[i][j] = dp[i - 1][j] || dp[i - 1][j - arr[i - 1]]; // Include or exclude the element
+                    dp[i][j] = dp[i - 1][j]; // Exclude the element
                 }
             }
         }
@@ -114,6 +116,7 @@ public class DP2SubsetSumProblem {
         return dp[n][sum];
     }
 
+    // Not to be used in interview even though it is same as above
     // (3) Tabulation approach = exact same solution as isSubsetSumTabulation but slightly different way of writing
     public boolean isSubsetSumTabulation2(int[] arr, int sum, int n) {
         Boolean[][] dp = new Boolean[n+1][sum+1];
@@ -121,6 +124,9 @@ public class DP2SubsetSumProblem {
         for (int i =0; i <= n; i++) {
             for (int j = 0; j <= sum; j++) {
                 if (j == 0) {
+                    // This is issue for edge case like num = [0], target = 0, output = 2
+                    // We are setting it 1 everytime j = 0, but what j at i = 1 , j = 1 =>[0]
+                    // Then the solution should be 2, it should add i=0 and j=0 solution in this
                     dp[i][j] = true;
                 } else if (i == 0) {
                     dp[i][j] = false;
