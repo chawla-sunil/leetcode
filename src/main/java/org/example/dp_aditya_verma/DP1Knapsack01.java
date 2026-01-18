@@ -140,6 +140,33 @@ public class DP1Knapsack01 {
         return dp[n][W];
     }
 
+    // (4) Space Optimized Tabulation approach
+    public int knapsackTabulationSpaceOptimized(int[] wt, int[] val, int W, int n) {
+        int[] dp = new int[W + 1];
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = W; j >= 0; j--) {
+                if (wt[i - 1] <= j) {
+                    dp[j] = Math.max(dp[j], val[i - 1] + dp[j - wt[i - 1]]);
+                } else {
+                    dp[j] = dp[j]; // ← This does nothing!
+                    // This code else is not required, just for understanding
+                    // remains unchanged (exclude item)
+                }
+            }
+        }
+
+        // more optimized loop
+//        for (int i = 1; i <= n; i++) {
+//            for (int j = W; j >= wt[i - 1]; j--) {
+//                // Here 2nd loop is running backwards to make sure that
+//                // we are using the previous row's values (i-1) and not the updated values in the same row
+//                dp[j] = Math.max(dp[j], val[i - 1] + dp[j - wt[i - 1]]);
+//            }
+//        }
+
+        return dp[W];
+    }
 
 //    public static void main(String[] args) {
 //        DP1Knapsack01 knapsack = new DP1Knapsack01();
