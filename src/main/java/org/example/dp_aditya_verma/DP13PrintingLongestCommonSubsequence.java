@@ -44,12 +44,12 @@ public class DP13PrintingLongestCommonSubsequence {
         return lcs.toString();  // return lcs;
     }
 
-    public static void main(String[] args) {
-        DP13PrintingLongestCommonSubsequence lcs = new DP13PrintingLongestCommonSubsequence();
-        String X = "AGGTAB";
-        String Y = "GXTXAYB";
-        int m = X.length();
-        int n = Y.length();
-        System.out.println("Longest Common Subsequence is: " + lcs.printLongestCommonSubsequence(X, Y, m, n));
-    }
+//    public static void main(String[] args) {
+//        DP13PrintingLongestCommonSubsequence lcs = new DP13PrintingLongestCommonSubsequence();
+//        String X = "AGGTAB";
+//        String Y = "GXTXAYB";
+//        int m = X.length();
+//        int n = Y.length();
+//        System.out.println("Longest Common Subsequence is: " + lcs.printLongestCommonSubsequence(X, Y, m, n));
+//    }
 }
