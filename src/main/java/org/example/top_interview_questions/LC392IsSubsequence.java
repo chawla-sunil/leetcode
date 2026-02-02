@@ -1,4 +1,4 @@
-package org.example.other;
+package org.example.top_interview_questions;
 
 public class LC392IsSubsequence {
 //    Given two strings s and t, return true if s is a subsequence of t, or false otherwise.

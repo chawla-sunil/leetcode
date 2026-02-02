@@ -34,10 +34,10 @@ public class LC3LongestSubstringWithoutRepeatingCharacters {
 //    s consists of English letters, digits, symbols and spaces.
 
     public int lengthOfLongestSubstring(String s) {
-        int maxLength = 0;
+        int n = s.length();
         Set<Character> charSet = new HashSet<>();
         int left = 0;
-        int n = s.length();
+        int maxLength = 0; // result
 
         for (int right = 0; right < n; right++) {
             if (!charSet.contains(s.charAt(right))) {
