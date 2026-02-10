@@ -34,7 +34,7 @@ public class LC54SpiralMatrix {
 
         int top = 0, bottom = m - 1;
         int left = 0, right = n - 1;
-        // we will an variable dir, which will tell where to 
+        // we will a variable dir, which will tell where to
         // dir = 0 means => -> ➡️ 
         // dir = 1 means =>  ⬇️
         // dir = 2 means => <- ⬅️ 

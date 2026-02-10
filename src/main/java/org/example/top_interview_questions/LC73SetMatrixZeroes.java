@@ -31,7 +31,97 @@ public class LC73SetMatrixZeroes {
 //    Could you devise a constant space solution?
 
 
+    // more optimised solutuon with O(1) space
+    // Use the first row and column as a note, reference.
     public void setZeroes(int[][] matrix) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+
+        boolean first_row_zero = false;
+        boolean first_col_zero = false;
+
+        // find if first raw and col has 0 in it in the next 2 loops
+        for (int i = 0; i < m; i++) {
+            if (matrix[i][0] == 0) {
+                first_col_zero = true;
+                break;
+
+            }
+        }
+        for (int j = 0; j < n; j++) {
+            if (matrix[0][j] == 0) {
+                first_row_zero = true;
+                break;
+            }
+        }
+
+        // set first row and col as reference zero
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                if (matrix[i][j] == 0) {
+                    matrix[i][0] = 0;
+                    matrix[0][j] = 0;
+                }
+            }
+        }
+
+        // use first row and col reference and in-place the zero in the matrix
+        for (int i = 1; i < m; i++) {
+            if (matrix[i][0] == 0) {
+                for (int j = 1; j < n; j++) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+        for (int j = 1; j < n; j++) {
+            if (matrix[0][j] == 0) {
+                for (int i = 1; i < m; i++) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+
+        // set the first row and col zero
+        if (first_row_zero) {
+            for (int j = 0; j < n; j++) {
+                matrix[0][j] = 0;
+            }
+        }
+        if (first_col_zero) {
+            for (int i = 0; i < m; i++) {
+                matrix[i][0] = 0;
+            }
+        }
+    }
+
+    // easy and understandable solution
+    // uses O(n) space
+    public void setZeroes2(int[][] matrix) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+
+        boolean[] row = new boolean[m];
+        boolean[] col = new boolean[n];
+
+        for (int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
+                if (matrix[i][j] == 0) {
+                    row[i] = true;
+                    col[j] = true;
+                }
+            }
+        }
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (row[i] || col[j]) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+    }
+
+    public void setZeroes3(int[][] matrix) {
         List<Integer> rows = new ArrayList<>(); //rowsWithZero
         List<Integer> cols = new ArrayList<>(); //colsWithZero
 

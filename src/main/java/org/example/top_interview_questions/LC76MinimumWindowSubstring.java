@@ -60,7 +60,8 @@ public class LC76MinimumWindowSubstring {
                     minLen = endWindow - start + 1;
                     subStr = start;
                 }
-                char deleted = s.charAt(start++);
+                char deleted = s.charAt(start);
+                start++;
                 if (map.containsKey(deleted)) {
                     if (map.get(deleted) == 0) matched--;
                     map.put(deleted, map.get(deleted) + 1);
