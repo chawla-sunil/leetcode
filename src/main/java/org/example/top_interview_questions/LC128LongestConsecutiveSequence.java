@@ -25,36 +25,49 @@ public class LC128LongestConsecutiveSequence {
 //            -10^9 <= nums[i] <= 10^9
 
 
-    // both are exact same but 2nd solution is a liitle bit better. 
-    // 1st Solution is more readable
-    public int longestConsecutive2(int[] nums) {
+    // both are same solution.
+    // In this one we are starting from the start of the sequence
+    public int longestConsecutive(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
         }
 
         Set<Integer> set = new HashSet<>();
-        for (int i = 0; i < nums.length; i++) {
-            set.add(nums[i]);
+        for (int num : nums) {
+            set.add(num);
         }
 
-        int longestConsecutive = 0;
-        for (int num: nums) {
-            if (!set.contains(num-1)) {
-                int currNum = num;
-                int nowStreak = 1;
+        int res = 1;
 
-                while (set.contains(currNum + 1)) {
-                    currNum++;
-                    nowStreak++;
+        for (int num : nums) {
+            // If the current element 'num' is the start of a sequence (no 'num-1' in 'set')
+            // we are starting from the start of the sequence
+            // in another(longestConsecutive2) solution, we are starting from the middle.
+            if (!set.contains(num - 1)) {
+                int curr = num;
+                int count = 1;
+
+                while (set.contains(curr + 1)) {
+                    // no need to remove actually, it will work without it also
+                    // but if we don't remove it then we will have to process the same range again
+                    // in case if the we have double/duplicate entry, example =>
+                    // suppose we have 1 1 2 2 3 3 in the array the max len will be 3 - (1 2 3)
+                    // and we will process the same loop two time for 1.
+                    // It is just optimisation which is important in time complexity
+                    set.remove(curr);
+                    curr++;
+                    count++;
                 }
 
-                longestConsecutive = Math.max(longestConsecutive, nowStreak);
+                res = Math.max(res, count);
             }
         }
-        return longestConsecutive;
+
+        return res;
     }
 
-    public int longestConsecutive(int[] nums) {
+    // In this one we are starting from the middle of the sequence
+    public int longestConsecutive2(int[] nums) {
         int res = 0;// answer len
         Set<Integer> set = new HashSet<>();
         for(int i:nums) set.add(i); // add all elements in a set, we dont require duplicates because - 
