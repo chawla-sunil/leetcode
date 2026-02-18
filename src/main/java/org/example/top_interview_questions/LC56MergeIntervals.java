@@ -38,10 +38,8 @@ public class LC56MergeIntervals {
             int[] curr = intervals[i];
 
             if (currBigInterval[1] >= curr[0]) {
-                // currBigInterval[1] = Math.max(curr[1], currBigInterval[1]);
-                currBigInterval[1] = curr[1];
-                // currBigInterval[1] = curr[1] will also work as it is given in the question that
-                // 0 <= starti <= endi <= 10^4
+                currBigInterval[1] = Math.max(curr[1], currBigInterval[1]);
+                // Math.max used for cases like this intervals = [[1,4],[2,3]]
             } else {
                 merged.add(currBigInterval);
                 currBigInterval = curr;
