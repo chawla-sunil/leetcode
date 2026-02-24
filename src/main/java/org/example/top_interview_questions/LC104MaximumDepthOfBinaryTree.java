@@ -19,7 +19,19 @@ public class LC104MaximumDepthOfBinaryTree {
 //    The number of nodes in the tree is in the range [0, 10^4].
 //            -100 <= Node.val <= 100
 
+    // simplified
     public int maxDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int left = maxDepth(root.left);
+        int right = maxDepth(root.right);
+
+        return 1 + Math.max(left, right);
+    }
+
+    public int maxDepth2(TreeNode root) {
         if (root == null) {
             return 0;
         }

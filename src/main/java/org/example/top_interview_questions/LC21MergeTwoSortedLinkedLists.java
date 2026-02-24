@@ -25,6 +25,45 @@ public class LC21MergeTwoSortedLinkedLists {
 //            Both list1 and list2 are sorted in non-decreasing order.
 
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode dummy = new ListNode(0);
+        ListNode res = dummy;
+
+        while (list1 != null && list2 != null) {
+            if (list1.val < list2.val) {
+                res.next = new ListNode(list1.val);
+                res = res.next;
+                list1 = list1.next;
+            } else if (list1.val > list2.val) {
+                res.next = new ListNode(list2.val);
+                res = res.next;
+                list2 = list2.next;
+            } else {
+                res.next = new ListNode(list1.val);
+                res = res.next;
+                res.next = new ListNode(list2.val);
+                res = res.next;
+                list1 = list1.next;
+                list2 = list2.next;
+            }
+        }
+
+        while (list1 != null) {
+            res.next = new ListNode(list1.val);
+            res = res.next;
+            list1 = list1.next;
+        }
+
+        while (list2 != null) {
+            res.next = new ListNode(list2.val);
+            res = res.next;
+            list2 = list2.next;
+        }
+
+        return dummy.next;
+    }
+
+    // This is just written better
+    public ListNode mergeTwoLists2(ListNode list1, ListNode list2) {
         ListNode dummyNode = new ListNode(0);
         ListNode node = dummyNode;
         while (list1 != null && list2 != null) {

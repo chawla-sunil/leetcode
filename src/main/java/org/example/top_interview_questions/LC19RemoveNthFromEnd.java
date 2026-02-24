@@ -22,7 +22,33 @@ public class LC19RemoveNthFromEnd {
 //            0 <= Node.val <= 100
 //            1 <= n <= sz
 
+    // Both are exact same solution but this one is better to understand.
     public ListNode removeNthFromEnd(ListNode head, int n) {
+        int sz = 0; // size or length of head linked list
+        ListNode node = head;
+
+        while(node != null) {
+            node = node.next;
+            sz++;
+        }
+
+        if (n == sz) {
+            return head.next;
+        }
+
+        node = head;
+        int i = 1; // we are at head currently
+        while (i < (sz - n)) {
+            node = node.next;
+            i++;
+        }
+
+        node.next = node.next.next;
+
+        return head;
+    }
+
+    public ListNode removeNthFromEnd2(ListNode head, int n) {
         if (head.next == null) {return null;}
         ListNode curr = head;
         int total = 0;

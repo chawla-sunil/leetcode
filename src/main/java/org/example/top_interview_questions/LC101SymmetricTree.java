@@ -24,8 +24,8 @@ public class LC101SymmetricTree {
 //    Follow up: Could you solve it both recursively and iteratively?
 
 
-    // Recursive Solution, Best
-    public boolean isSymmetric1(TreeNode root) {
+    // Recursive Solution, Best and good to understand
+    public boolean isSymmetric(TreeNode root) {
         if (root == null) {
             return true;
         }
@@ -45,7 +45,7 @@ public class LC101SymmetricTree {
     }
 
     // Iterative Approach
-    public boolean isSymmetric(TreeNode root) {
+    public boolean isSymmetric1(TreeNode root) {
         if (root == null) {
             return true;
         }
