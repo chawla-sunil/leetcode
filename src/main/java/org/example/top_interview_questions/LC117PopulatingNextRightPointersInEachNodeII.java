@@ -41,8 +41,9 @@ public class LC117PopulatingNextRightPointersInEachNodeII {
 //    You may only use constant extra space.
 //    The recursive approach is fine. You may assume implicit stack space does not count as extra space for this problem.
 
-    // Simple and easy solution but uses O(N) space
-    // Use BFS to level traversal, a List to store the Nodes of each level.
+    // Simple and easy solution
+    // Approach 1: BFS + List per level | Time: O(N), Space: O(N)
+    // Store all nodes of each level in a list, then link them left to right.
     public Node connect1(Node root) {
         if (root == null) {
             return root;
@@ -75,9 +76,9 @@ public class LC117PopulatingNextRightPointersInEachNodeII {
         return root;
     }
 
-    // A little better than last because it does not usese O(N) space
-    // In fact, we just need a Node to store the Previous Node.
-    // instead of List<Node> levelNodes = new ArrayList<>();
+    // Approach 2: BFS + prev pointer | Time: O(N), Space: O(N) for queue
+    // Instead of storing all level nodes in a list, just keep a "prev" pointer
+    // and link prev -> currNode as we poll from the queue.
     public Node connect2(Node root) {
         if (root == null) {
             return root;
@@ -110,7 +111,8 @@ public class LC117PopulatingNextRightPointersInEachNodeII {
         return root;
     }
 
-    // This and connect2 method are exact same
+    // Approach 3: Same as connect2, but uses a dummy node to avoid the null check on prev.
+    // dummy.next always gets overwritten, so no special "if (prev != null)" needed.
     public Node connect3(Node root) {
         if (root == null) {
             return root;
@@ -141,6 +143,10 @@ public class LC117PopulatingNextRightPointersInEachNodeII {
         return root;
     }
 
+    // Approach 4 (Optimal): O(1) space — no queue needed.
+    // Treat each level as a linked list (connected via .next pointers).
+    // While traversing the current level's linked list, build the next level's
+    // linked list using a dummy head. Then move down to the next level and repeat.
     // Each level can be seem as a Linked List.
     // For example, the root node is a linked list with one node,
     // and the second level is a linked list with two nodes and so on...
@@ -198,5 +204,5 @@ public class LC117PopulatingNextRightPointersInEachNodeII {
             right = _right;
             next = _next;
         }
-    };
+    }
 }
