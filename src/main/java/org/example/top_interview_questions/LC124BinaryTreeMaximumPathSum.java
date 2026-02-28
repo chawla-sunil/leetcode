@@ -26,6 +26,10 @@ public class LC124BinaryTreeMaximumPathSum {
 
     // nice explaination => https://leetcode.com/problems/binary-tree-maximum-path-sum/?envType=featured-list&envId=top-interview-questions?envType=featured-list&envId=top-interview-questions
     int max = Integer.MIN_VALUE;
+
+    // This is main function
+    // This is Maximum Path Sum | From any node to any node
+    // aditya verma dp series
     public int maxPathSum(TreeNode root) {
         maxPathSumRecursion(root);
         return max;
@@ -59,5 +63,4 @@ public class LC124BinaryTreeMaximumPathSum {
             this.right = right;
         }
     }
-
 }
