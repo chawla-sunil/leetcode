@@ -28,8 +28,35 @@ public class LC102BinaryTreeLevelOrderTraversal {
 //            -1000 <= Node.val <= 1000
 
 
-    // My Solution, Easy to understand, Next is also good.
-    // Next Solution is more good and Best
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (root == null) {
+            return res;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            int levelSize = queue.size();
+            List<Integer> level = new ArrayList<>();
+
+            for (int i = 0; i < levelSize; i++) {
+                TreeNode node = queue.poll();
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+                level.add(node.val);
+            }
+            res.add(level);
+        }
+
+        return res;
+    }
+
     public List<List<Integer>> levelOrder1(TreeNode root) {
         List<List<Integer>> ans = new ArrayList<>();
         if (root == null) {
@@ -84,39 +111,5 @@ public class LC102BinaryTreeLevelOrderTraversal {
             this.level = level;
             this.node = node;
         }
-    }
-
-    // Best, Even helpful in zigzag order also.
-    public List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> list = new ArrayList<>();
-        if (root == null) {
-            return list;
-        }
-        Queue<TreeNode> q = new LinkedList<>();
-        q.offer(root);
-
-        boolean leftToRight = true;
-
-        while(!q.isEmpty()) {
-            int levelSize = q.size();
-            List<Integer> levelValues = new ArrayList<>();
-
-            for (int i = 0; i < levelSize; i++) {
-                TreeNode node = q.poll();
-
-                levelValues.add(node.val);
-
-                if (node.left != null) {
-                    q.offer(node.left);
-                }
-                if (node.right != null) {
-                    q.offer(node.right);
-                }
-            }
-
-            list.add(levelValues);
-            leftToRight = !leftToRight;
-        }
-        return list;
     }
 }

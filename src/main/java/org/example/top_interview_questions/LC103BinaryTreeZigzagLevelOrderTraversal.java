@@ -29,26 +29,21 @@ public class LC103BinaryTreeZigzagLevelOrderTraversal {
 
 
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> ans = new ArrayList<>();
+        List<List<Integer>> res = new ArrayList<>();
         if (root == null) {
-            return ans;
+            return res;
         }
 
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
-        boolean leftToRight = true;
 
+        boolean leftToRight = true;
         while (!queue.isEmpty()) {
             int levelSize = queue.size();
-            List<Integer> levelValues = new ArrayList<>();
+            List<Integer> list = new ArrayList<>();
 
             for (int i = 0; i < levelSize; i++) {
                 TreeNode node = queue.poll();
-                if (leftToRight) {
-                    levelValues.add(node.val);
-                } else {
-                    levelValues.add(0, node.val); // Insert at the beginning for right-to-left traversal
-                }
 
                 if (node.left != null) {
                     queue.offer(node.left);
@@ -56,13 +51,19 @@ public class LC103BinaryTreeZigzagLevelOrderTraversal {
                 if (node.right != null) {
                     queue.offer(node.right);
                 }
+
+                if (leftToRight) {
+                    list.add(node.val);
+                } else {
+                    list.add(0, node.val); // Insert at the beginning for right-to-left traversal
+                }
             }
 
-            ans.add(levelValues);
             leftToRight = !leftToRight;
+            res.add(list);
         }
 
-        return ans;
+        return res;
     }
 
     private class TreeNode {
