@@ -30,29 +30,69 @@ public class LC98ValidateBinarySearchTree {
 
     
     // Recursive inorder way, best, if it is valid BST, the inorder will be sorted
-    public boolean isValidBST1(TreeNode root) {
+    // InOrder Traversal of a Binary Search Tree always Gives a sorted Array
+    // so if it is not sorted, then it is not BST
+    public boolean isValidBST(TreeNode root) {
         List<Integer> list = new ArrayList<>();
-        recursion(root, list);
+        inorder(root, list);
 
-        for (int i = 0; i < list.size() - 1; i++) {
-            if (list.get(i) >= list.get(i + 1)) {
+        for (int i = 1; i < list.size(); i++) {
+            if (list.get(i) <= list.get(i-1)) {
                 return false;
             }
         }
+
         return true;
     }
 
-    private void recursion(TreeNode node, List<Integer> list) {
-        if (node == null) {
+    public void inorder(TreeNode root, List<Integer> list) {
+        if (root == null) {
             return;
         }
-        recursion(node.left, list);
-        list.add(node.val);
-        recursion(node.right, list);
+
+        inorder(root.left, list);
+        list.add(root.val);
+        inorder(root.right, list);
     }
 
+
+
+
+
+    // To uderstand this, do 3 questions of Binary Search Tree from
+    // Top Interview 150 question series.
+    // Here, We are going inorder and inorder of BST is always sorted array
+    // we will check prev node with current node and
+    // if prev is bigger than current than than we save marked no-BST(isBST = false)
+    TreeNode prev;
+    boolean isBST = true;
+    public boolean isValidBST2(TreeNode root) {
+        helperInorder(root);
+        return isBST;
+    }
+
+    public void helperInorder(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+
+        helperInorder(root.left);
+
+        if (prev != null) {
+            if (prev.val >= root.val) {
+                isBST = false;
+            }
+        }
+        prev = root;
+
+        helperInorder(root.right);
+    }
+
+
+
+
     // iterative approach
-    public boolean isValidBST(TreeNode root) {
+    public boolean isValidBST3(TreeNode root) {
         if (root == null) {
             return true;
         }
