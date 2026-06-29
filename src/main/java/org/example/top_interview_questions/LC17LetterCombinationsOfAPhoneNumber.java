@@ -44,20 +44,20 @@ public class LC17LetterCombinationsOfAPhoneNumber {
         map.put('8', new char[] {'t', 'u', 'v'});
         map.put('9', new char[] {'w', 'x', 'y', 'z'});
 
-        List<String> output = new ArrayList<>();
+        List<String> res = new ArrayList<>();
 
-        backTracing(0, "", map, output, digits);
-        return output;
+        backTracing(0, "", map, res, digits);
+        return res;
     }
 
-    public void backTracing(int currentIndex, String currStr, Map<Character, char[]> map, List<String> output, String digits) {
+    public void backTracing(int currentIndex, String currStr, Map<Character, char[]> map, List<String> res, String digits) {
         if (currStr.length() == digits.length()) {
-            output.add(currStr);
+            res.add(currStr);
             return;
         }
         char[] chars = map.get(digits.charAt(currentIndex));
         for (char c: chars) {
-            backTracing(currentIndex + 1, currStr + c, map, output, digits);
+            backTracing(currentIndex + 1, currStr + c, map, res, digits);
         }
     }
 }

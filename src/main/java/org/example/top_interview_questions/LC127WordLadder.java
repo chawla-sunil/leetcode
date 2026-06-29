@@ -71,7 +71,85 @@ public class LC127WordLadder {
     // if we nevenr found out the endWorld that means it does not exists in the given list
     // so in the end we will return 0;
 
+    // similar problem => https://leetcode.com/problems/minimum-genetic-mutation/description/
+    // uses same logic and code.
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        Set<String> set = new HashSet<>(wordList);
+        if (!set.contains(endWord)) {
+            return 0;
+        }
+
+        Queue<String> queue = new LinkedList<>();
+        Set<String> visited = new HashSet<>();
+        queue.add(beginWord);
+        visited.add(beginWord);
+        int level = 1;
+
+        while (!queue.isEmpty()) {
+            int levelSize = queue.size();
+
+            while (levelSize-- > 0) {
+                String word = queue.poll();
+                if (word.equals(endWord)) {
+                    return level;
+                }
+
+                char[] charArray = word.toCharArray();
+                for (int i = 0; i < word.length(); i++) {
+                    char original = charArray[i];
+                    for (char ch = 'a'; ch <= 'z'; ch++) {
+                        if (ch == original) continue;  // skip same character
+                        charArray[i] = ch;
+
+                        String newWord = new String(charArray);
+                        if (set.contains(newWord) && !visited.contains(newWord)) {
+                            queue.offer(newWord);
+                            visited.add(newWord);
+                        }
+                    }
+                    charArray[i] = original;
+                }
+            }
+
+            level++;
+        }
+
+        return 0;
+    }
+
+    // It is actually a BFS question. Here is the flow =>
+    // begig = "hit",       end = "cog",        list = ["hot","dot","dog","lot","log","cog"]
+
+    // set = ["hot","dot","dog","lot","log","cog"]. acts as visited array but in opposite style
+    // set will store all the word that has not been visited.
+
+    // we first going to remove beginWord("hit") from set, because it is the first word we visited.
+
+    // At every level we are just going to change every word from 'a' to 'z' at every position.
+    // and check if that word exist or not in set. if it exists in set that means it has not been
+    // visited, so we will add it to the queue.
+
+    //   level 1           hit
+    //                      ⬇
+    //   level 2           hot
+    //                     ↙️   ↘️
+    //   level 3        dot    lot                 (**)
+    //                 ↙️   ↘️   ↙️   ↘️
+    //   level 4    dog            log
+    //                              ↘️
+    //   level 5                    cog
+
+    // so the answer is 5
+
+    // (**) => at level 3 we can generate hot also from lot but since we have already visited hot at
+    // level 2 and we removed it there so hot is not in level 4.
+
+    // At any level, if we find the endWord, then we will return the level of that word.
+
+    // if we nevenr found out the endWorld that means it does not exists in the given list
+    // so in the end we will return 0;
+
+    public int ladderLength2(String beginWord, String endWord, List<String> wordList) {
         Set<String> set = new HashSet<>(wordList); // it will store all the words which are not visited
         if (!set.contains(endWord)) {
             return 0;
