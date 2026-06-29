@@ -26,22 +26,32 @@ public class LC46Permutations {
 //            -10 <= nums[i] <= 10
 //    All the integers of nums are unique.
 
+    // back tracking format breaktdown =>
+    // https://leetcode.com/discuss/post/6164330/backtracking-cheat-sheet-in-java-from-ba-qojd/
+
+    // Multiple other good backtracking problem solutions based on the above and my answer below format =>
+    // https://leetcode.com/problems/permutations/solutions/18239/a-general-approach-to-backtracking-quest-e6b1
+
+
     public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
-        backtracking(result, nums, new ArrayList<>());
-        return result;
+        List<List<Integer>> res = new ArrayList<>();
+        backTracking(nums, new ArrayList<>(), res);
+        return res;
     }
 
-    public void backtracking(List<List<Integer>> result, int[] nums, List<Integer> tempList) {
-        if (tempList.size() == nums.length) {
-            result.add(new ArrayList<>(tempList));
-        } else{
-            for (int i = 0; i < nums.length; i++) {
-                if (tempList.contains(nums[i])) { continue; }
-                tempList.add(nums[i]);
-                backtracking(result, nums, tempList);
-                tempList.remove(tempList.size() - 1);
+    public void backTracking(int[] nums, List<Integer> temp, List<List<Integer>> res) {
+        if (temp.size() == nums.length) {
+            res.add(new ArrayList<>(temp));
+            return;
+        }
+
+        for (int num : nums) {
+            if (temp.contains(num)) {
+                continue;
             }
+            temp.add(num);
+            backTracking(nums, temp, res);
+            temp.remove(temp.size() - 1);
         }
     }
 }
