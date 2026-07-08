@@ -21,20 +21,21 @@ public class LC22GenerateParentheses {
 
     public List<String> generateParenthesis(int n) {
         List<String> res = new ArrayList<>();
-        recurse(res, 0, 0, "", n);
+        backTracking(res, 0, 0, "", n);
         return res;
     }
 
-    public void recurse(List<String> res, int openBracket, int closeBracket, String s, int n) {
-        if (s.length() == n * 2) {
+    public void backTracking(List<String> res, int openBracket, int closeBracket, String s, int n) {
+        if (s.length() == 2 * n) {
             res.add(s);
             return;
         }
+
         if (openBracket < n) {
-            recurse(res, openBracket + 1, closeBracket, s + "(", n);
+            backTracking(res, openBracket + 1, closeBracket, s + "(", n);
         }
         if (closeBracket < openBracket) {
-            recurse(res, openBracket, closeBracket + 1, s + ")", n);
+            backTracking(res, openBracket, closeBracket + 1, s + ")", n);
         }
     }
 }
