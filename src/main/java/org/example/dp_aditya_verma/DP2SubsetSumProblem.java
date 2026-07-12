@@ -26,8 +26,8 @@ public class DP2SubsetSumProblem {
         if (arr[n - 1] > sum) return isSubsetSumRecursive(arr, n - 1, sum);
 
         // Otherwise, check if sum can be obtained by any of the following:
-        // (1) including the last element
-        // (2) excluding the last element
+        // (1) excluding the last element
+        // (2) including the last element
         return isSubsetSumRecursive(arr, n - 1, sum) || isSubsetSumRecursive(arr, n - 1, sum - arr[n - 1]);
     }
 

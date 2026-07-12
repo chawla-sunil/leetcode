@@ -16,7 +16,7 @@ public class DP1Knapsack01 {
 //
 //    Input: W = 7, val[] = [3, 8, 7, 4], wt[] = [3, 1, 2, 6]
 //    Output: 18
-//    Explanation: Choose the last item, which weighs 1 unit and has a value of 3.
+//    Explanation: Choose 2nd, 3rd and 4th item, which weighs 3, 8, 4 unit and has a value of 3, 1, 6.
 
 
     // (1) Recursive approach
@@ -168,18 +168,18 @@ public class DP1Knapsack01 {
         return dp[W];
     }
 
-//    public static void main(String[] args) {
-//        DP1Knapsack01 knapsack = new DP1Knapsack01();
-//        int[] val = {3, 8, 7, 4};
-//        int[] wt = {3, 1, 2, 6};
-//        int W = 7;
-//        int n = val.length;
-//        int maxValue = knapsack.knapsackRecursive(wt, val, W, n);
-//        System.out.println("Maximum value in Knapsack = " + maxValue); // Output: 18
-//        int maxValue2 = knapsack.knapsackMemoizationBase(wt, val, W, n);
-//        System.out.println("Maximum value in Knapsack = " + maxValue2); // Output: 18
-//        int maxValue3 = knapsack.knapsackTabulation(wt, val, W, n);
-//        System.out.println("Maximum value in Knapsack = " + maxValue3); // Output: 18
-//    }
+    public static void main(String[] args) {
+        DP1Knapsack01 knapsack = new DP1Knapsack01();
+        int[] val = {3, 8, 7, 4};
+        int[] wt = {3, 1, 2, 6};
+        int W = 7;
+        int n = val.length;
+        int maxValue = knapsack.knapsackRecursive(wt, val, W, n);
+        System.out.println("Maximum value in Knapsack = " + maxValue); // Output: 18
+        int maxValue2 = knapsack.knapsackMemoizationBase(wt, val, W, n);
+        System.out.println("Maximum value in Knapsack = " + maxValue2); // Output: 18
+        int maxValue3 = knapsack.knapsackTabulation(wt, val, W, n);
+        System.out.println("Maximum value in Knapsack = " + maxValue3); // Output: 18
+    }
 
 }
