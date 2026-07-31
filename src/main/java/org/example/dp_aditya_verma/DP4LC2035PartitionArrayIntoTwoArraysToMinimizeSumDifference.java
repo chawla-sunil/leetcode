@@ -78,7 +78,7 @@ public class DP4LC2035PartitionArrayIntoTwoArraysToMinimizeSumDifference {
      * i=2 (2)       T   T   T   T   F   F
      * i=3 (7)       T   T   T   T   F   F  ← LAST ROW: Check from right to left from the middle(S/2=5)
      *               ↑   ↑   ↑   ↑   ↑   ↑
-     *              S1=0 S1=1 S1=2 S1=3  F   F
+     *            S1=0 S1=1 S1=2 S1=3 F  F
      *
      * Finding minimum difference:
      * - Start from j = target (5) and go backwards

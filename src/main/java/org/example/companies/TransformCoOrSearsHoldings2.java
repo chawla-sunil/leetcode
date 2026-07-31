@@ -91,9 +91,7 @@ public class TransformCoOrSearsHoldings2 {
         int numCols = matrix[0].length;
         int[][] subMatrix = new int[numRows - 1][numCols];
         for (int i = 1; i < numRows; i++) {
-            for (int j = 0; j < numCols; j++) {
-                subMatrix[i - 1][j] = matrix[i][j];
-            }
+            System.arraycopy(matrix[i], 0, subMatrix[i - 1], 0, numCols);
         }
 
         // Rotating

@@ -8,8 +8,10 @@ public class Project44Round2 {
 //    public static void main(String[] args) {
 //    }
     private Map<Integer, Node> map = new HashMap<>();
-    private int capacity, count;
-    private Node head, tail;
+    private final int capacity;
+    private int count;
+    private final Node head;
+    private final Node tail;
 
     public Project44Round2(int capacity) {
         this.capacity = capacity;

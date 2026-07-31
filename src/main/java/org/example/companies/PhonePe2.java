@@ -12,7 +12,7 @@ class PhonePe2 {
         System.out.println("Hello, World");
         // for question1
         List<List<Integer>> a = new ArrayList<>();
-        a.add(Arrays.asList(2));
+        a.add(List.of(2));
         a.add((Arrays.asList(3,4)));
         a.add((Arrays.asList(6,5,7)));
         a.add((Arrays.asList(4,1,8,3)));
