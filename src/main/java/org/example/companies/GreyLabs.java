@@ -1,7 +1,7 @@
 package org.example.companies;
 
 public class GreyLabs {
-    // 15 June 2026
+    // 15 July 2026
     // Rate limit
     // Token bucket
 
