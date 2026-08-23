@@ -39,12 +39,14 @@ public class LC23MergeKSortedLists {
 //      lists[i] is sorted in ascending order.
 //      The sum of lists[i].length will not exceed 10^4.
 
+    // easy to understand function
     public ListNode mergeKLists(ListNode[] lists) {
         if (lists == null || lists.length == 0) return null;
         PriorityQueue<ListNode> minHeap = new PriorityQueue<>(lists.length, (a, b) -> a.val - b.val);
 
         for (ListNode node: lists) {
             if (node != null) {
+                // as given node can be null
                 minHeap.add(node);
             }
         }
@@ -56,22 +58,19 @@ public class LC23MergeKSortedLists {
             curr = curr.next;
 
             if (curr.next != null) {
+                // initially, we only added the head of the node
+                // so here we are adding the next element
                 minHeap.add(curr.next);
             }
         }
         return dummyNode.next;
     }
 
-    public static class ListNode {
-        int val;
-        ListNode next;
-        ListNode() {}
-        ListNode(int val) { this.val = val; }
-        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-    }
 
 
-    public ListNode mergeKListsMethod2(ListNode[] lists) {
+    // It has better time complexity but above one is easy to understand.
+    // Here, we will merge 2 nodes at a time and them merge the merged nodes
+    public ListNode mergeKLists2(ListNode[] lists) {
         if (lists == null || lists.length == 0) {
             return null;
         }
@@ -91,6 +90,7 @@ public class LC23MergeKSortedLists {
         return merge(left, right);
     }
 
+    // merge two nodes
     private ListNode merge(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(0);
         ListNode curr = dummy;
@@ -109,5 +109,13 @@ public class LC23MergeKSortedLists {
         curr.next = (l1 != null) ? l1 : l2;
 
         return dummy.next;
+    }
+
+    public static class ListNode {
+        int val;
+        ListNode next;
+        ListNode() {}
+        ListNode(int val) { this.val = val; }
+        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
     }
 }

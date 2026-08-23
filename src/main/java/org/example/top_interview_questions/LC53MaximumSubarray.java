@@ -32,10 +32,24 @@ public class LC53MaximumSubarray {
 //    Follow up: If you have figured out the O(n) solution, try coding another solution
 //    using the divide and conquer approach, which is more subtle.
 
+    // Solution 1, it is same as solution 2, just written different
+    // choose any solution
+    public int maxSubArray(int[] nums) {
+        int currSum = nums[0];
+        int max = nums[0];
 
+        for (int i = 1; i < nums.length; i++) {
+            currSum += nums[i];
+            currSum = Math.max(nums[i], currSum);
+            max = Math.max(max, currSum);
+        }
+        return max;
+    }
+
+    // Solution 2, it is same as solution 1, just written different
     // this is kadane algorithm O(N) simple
     public int maxSubArray2(int[] nums) {
-        int maxSum = Integer.MIN_VALUE; // or int maxSum = nums[0]
+        int maxSum = Integer.MIN_VALUE;
         int currSum = 0;
 
         for (int i = 0; i < nums.length; i++) {
@@ -66,7 +80,7 @@ public class LC53MaximumSubarray {
 //     With the above observation, we can recursively divide the array into sub-problems on the left and right halves
 //     and then combine these results on the way back up to find the maximum subarray sum.
     
-    public int maxSubArray(int[] nums) {
+    public int maxSubArray3(int[] nums) {
         return maxAnswer(nums, 0, nums.length - 1);
     }
 
