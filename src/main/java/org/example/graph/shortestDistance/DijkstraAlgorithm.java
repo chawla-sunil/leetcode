@@ -44,9 +44,11 @@ public class DijkstraAlgorithm {
 
 
     // graph is like this,  => [neighbor, weight]
-    // [  [[2,1], [2,5]],        => from node(index) 0 to node 2, weight(distance) is 1
-    //    [[0,1], [2,2], [1, 7]],
-    //    [[0,5], [1,2]]  ]
+    // graph = [
+    //     [[1, 1], [2, 5]],         // node 0: 0 -> 1 (1), 0 -> 2 (5) => => from node(index) 0 to node 2, weight(distance) is 5
+    //     [[0, 1], [2, 2], [3, 4]], // node 1: 1 -> 0 (1), 1 -> 2 (2), 1 -> 3 (4)
+    //     [[0, 5], [1, 2]]          // node 2: 2 -> 0 (5), 2 -> 1 (2)
+    // ]
     public List<Integer> dijkstraAlgorithm(List<List<List<Integer>>> graph, int src) {
         int n = graph.size();
 

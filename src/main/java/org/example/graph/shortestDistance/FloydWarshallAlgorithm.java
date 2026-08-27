@@ -3,14 +3,17 @@ package org.example.graph.shortestDistance;
 public class FloydWarshallAlgorithm {
     // PART III: Find the shortest distance from all nodes to all nodes. (In the matrix)
     // Note: FloydWarshallAlgorithm works even when some edge weights are negative.
-    // But graph should not negative cycles, which we can identify in this algorithm itself
+    // But graph should not have negative sum cycles, which we can identify in this algorithm itself
 
     // Floyd-Warshall algorithm is used to find the shortest paths between all pairs of vertices in a weighted graph.
     // It works for both directed and undirected graphs, and it can handle negative edge weights (but not negative cycles).
     // The algorithm uses dynamic programming to iteratively update the shortest path estimates.
 
 
-//    You are given a weighted directed graph, represented by an adjacency matrix, dist[][] of size n x n, where dist[i][j] represents the weight of the edge from node i to node j. If there is no direct edge, dist[i][j] is set to a large value (i.e., 108) to represent infinity.
+//    You are given a weighted directed graph, represented by an adjacency matrix,
+//    dist[][] of size n x n, where dist[i][j] represents the weight of the edge from node i to node j.
+//    If there is no direct edge, dist[i][j] is set to a large value (i.e., 108) to represent infinity.
+//
 //    The graph may contain negative edge weights, but it does not contain any negative weight cycles.
 //
 //    Your task is to find the shortest distance between every pair of nodes i and j in the graph.
@@ -30,6 +33,8 @@ public class FloydWarshallAlgorithm {
     public void floydWarshall(int[][] dist) {
         int n = dist.length;
 
+        // Try every node as an intermediate stop: if going through k is shorter,
+        // update the best known path. After all k values, every pair has the shortest path.
         for (int k = 0; k < n; k++) {
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {

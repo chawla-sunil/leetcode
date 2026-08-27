@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class BellmanFordAlgorithm {
     // PART II: Find shorted distance from source node to all node
     // Note: BellmanFordAlgorithm works even when some edge weights are negative.
-    // But graph should not negative cycles, which we can identify in this algorithm itself
+    // But graph should not have negative sum cycles, which we can identify in this algorithm itself
 
 //    Given an weighted graph with V vertices numbered from 0 to V-1 and E edges,
 //    represented by a 2d array edges[][], where edges[i] = [u, v, w]
@@ -13,7 +13,7 @@ public class BellmanFordAlgorithm {
 //    You are also given a source vertex src.
 //
 //    Your task is to compute the shortest distances from the source to all other vertices.
-//    If a vertex is unreachable from the source, its distance should be marked as 108. Additionally,
+//    If a vertex is unreachable from the source, its distance should be marked as 10^8. Additionally,
 //    if the graph contains a negative weight cycle,
 //    return [-1] to indicate that shortest paths cannot be reliably computed.
 //
@@ -34,6 +34,15 @@ public class BellmanFordAlgorithm {
 //    For 0 to 3 minimum distance will be 6. By following path 0 → 1  → 2 → 4 → 3
 //    For 0 to 4 minimum distance will be 7. By following path 0 → 1  → 2 → 4
 
+
+    // Relax every edge V-1 times: each pass tries to improve the known shortest path
+    // using one more edge, so after enough passes we find the shortest path from src.
+    // Why =>
+    // In a graph with V vertices, the shortest path from source to any node can use at most V-1 edges.
+    // If a path had more than V-1 edges, it would repeat a node and form a cycle.
+    // If all edge weights are non-negative, repeating a cycle only makes it worse;
+    // with negative weights, a negative cycle is a problem, but if there is no negative cycle,
+    // the best path is always a simple path with at most V-1 edges.
     public int[] bellmanFord(int V, int[][] edges, int src) { // V = number of nodes(Vertices)
         int[] dist = new int[V];
         Arrays.fill(dist, Integer.MAX_VALUE); // OR Arrays.fill(dist, (int)(1e8)); 10^8
