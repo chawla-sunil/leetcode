@@ -36,10 +36,7 @@ public class DP11LC1143LongestCommonSubsequence {
     // LCS = Longest Common Subsequence
 
     // (1) Recursive approach
-    public int longestCommonSubsequenceRecursive(String x,
-                                                 String y,
-                                                 int m,
-                                                 int n) {
+    public int longestCommonSubsequenceRecursive(String x, String y, int m, int n) {
         // Base condition
         if (m == 0 || n == 0) {
             return 0;
@@ -54,10 +51,7 @@ public class DP11LC1143LongestCommonSubsequence {
     }
 
     // (2) Memoization approach base function
-    public int longestCommonSubsequenceMemoizationBase(String x,
-                                                       String y,
-                                                       int m,
-                                                       int n) {
+    public int longestCommonSubsequenceMemoizationBase(String x, String y, int m, int n) {
         int[][] dp = new int[m + 1][n + 1];
         for (int i = 0; i <= m; i++) {
             for (int j = 0; j <= n; j++) {
@@ -68,11 +62,7 @@ public class DP11LC1143LongestCommonSubsequence {
     }
 
     // (2) Memoization approach
-    public int longestCommonSubsequenceMemoization(String x,
-                                                   String y,
-                                                   int m,
-                                                   int n,
-                                                   int[][] dp) {
+    public int longestCommonSubsequenceMemoization(String x, String y, int m, int n, int[][] dp) {
         // Base condition
         if (m == 0 || n == 0) {
             return 0;
@@ -93,10 +83,7 @@ public class DP11LC1143LongestCommonSubsequence {
     }
 
     // (3) Tabulation approach
-    public int longestCommonSubsequenceTabulation(String x,
-                                                  String y,
-                                                  int m,
-                                                  int n) {
+    public int longestCommonSubsequenceTabulation(String x, String y, int m, int n) {
         int[][] dp = new int[m + 1][n + 1];
 
         // Build the dp array
@@ -118,10 +105,7 @@ public class DP11LC1143LongestCommonSubsequence {
     }
 
     // (4) Space Optimized Tabulation approach
-    public int longestCommonSubsequenceTabulationSpaceOptimized(String x,
-                                                                String y,
-                                                                int m,
-                                                                int n) {
+    public int longestCommonSubsequenceTabulationSpaceOptimized(String x, String y, int m, int n) {
         // We chose 2 arrays of size n+1 to store the current and previous row values
         // Because in LCS DP, we only need the previous row to compute the current row
         // This allows us to optimize space complexity from O(m*n) to O(n)
