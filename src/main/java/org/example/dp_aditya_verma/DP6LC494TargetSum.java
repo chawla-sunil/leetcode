@@ -41,8 +41,24 @@ public class DP6LC494TargetSum {
     //                 => +1 +1 +2 -3 = 1  |
     // Agar is problem ko sort kare and saare positive (+) ek taraf
     // and saare negative (-) ek taraf rakh de to, 2 subsets ban jayenge
-    // S1 will + and S2 with - sign, so this problem can be converted to
+    // S1 with + and S2 with - sign, so this problem can be converted to
     // Count The Number Of Subset With A Given Difference problem
+
+
+    // Count The Number Of Subset With A Given Difference problem ==>>>
+    // We need to find count of subsets with given sum
+    // Let sum of array elements = S
+    // Let two subset sums be S1 and S2
+    // We need to find count of partitions such that
+    //                  S1 - S2 = diff
+    // We know that     S1 + S2 = S  => S2 = S - S1
+    // So,        S1 - (S - S1) = diff
+    //              => 2*S1 - S = diff
+    //                  => 2*S1 = diff + S
+    //                    => S1 = (diff + S) / 2
+    // So, we need to find count of subsets with sum = (diff + S) / 2
+    // So this problem becomes to "Count of Subsets with Given Sum" problem
+    // where given sum = (diff + S) / 2
 
 
     // It will become Count The Number Of Subset With A Given Difference
