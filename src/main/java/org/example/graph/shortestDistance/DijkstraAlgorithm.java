@@ -49,6 +49,12 @@ public class DijkstraAlgorithm {
     //     [[0, 1], [2, 2], [3, 4]], // node 1: 1 -> 0 (1), 1 -> 2 (2), 1 -> 3 (4)
     //     [[0, 5], [1, 2]]          // node 2: 2 -> 0 (5), 2 -> 1 (2)
     // ]
+
+    // Algorithm: Start the source at distance 0 and repeatedly take the node with the
+    // smallest known distance from a min-heap. For each neighbor, check whether reaching it
+    // through the current node is shorter than its known distance; if so, update its distance
+    // and add it to the heap. This edge update is called "relaxation."
+    // This algorithm works only with non-negative edge weights.
     public List<Integer> dijkstraAlgorithm(List<List<List<Integer>>> graph, int src) {
         int n = graph.size();
 

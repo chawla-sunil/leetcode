@@ -35,6 +35,12 @@ public class BellmanFordAlgorithm {
 //    For 0 to 4 minimum distance will be 7. By following path 0 → 1  → 2 → 4
 
 
+    // Algorithm: Start the source at distance 0. For every edge u -> v with weight w, check
+    // whether dist[u] + w is smaller than dist[v]; if so, update dist[v]. This comparison
+    // and update is called "relaxing an edge." Repeat it for every edge V-1 times so shorter
+    // paths can spread across the graph. Check every edge once more afterward; if any distance
+    // still improves, the graph contains a reachable negative-weight cycle.
+
     // Relax every edge V-1 times: each pass tries to improve the known shortest path
     // using one more edge, so after enough passes we find the shortest path from src.
     // Why =>

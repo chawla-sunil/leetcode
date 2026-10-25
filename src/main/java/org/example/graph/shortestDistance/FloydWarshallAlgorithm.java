@@ -28,6 +28,11 @@ public class FloydWarshallAlgorithm {
 //                       [10^8, 10^8, 1,    0,    2],
 //                       [1,    10^8, 10^8, 4,    0]]
 
+    // Algorithm: Try every node k as an intermediate point between every pair of nodes i and j.
+    // Compare the current direct/best-known distance dist[i][j] with the distance obtained by
+    // going from i to k and then k to j. Keep whichever is smaller. After every node has been
+    // tried as the intermediate point, the matrix contains the shortest distance for every pair.
+
     // When we have given graph as adjacency matrix
     // When We want to do in-place
     public void floydWarshall(int[][] dist) {
